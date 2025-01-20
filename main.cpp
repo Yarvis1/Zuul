@@ -26,11 +26,13 @@ void setupGame(vector<Room*>& rooms) {
     Room* finalRoom = new Room("Final Room", "A room with a glowing portal. Bring the key to win!");
 
     // Set up exits
-    entrance->addExit("north", hallway);
+   entrance->addExit("north", hallway);
     hallway->addExit("south", entrance);
     hallway->addExit("east", treasureRoom);
     hallway->addExit("west", armory);
     treasureRoom->addExit("west", hallway);
+    treasureRoom->addExit("north",kitchen);
+    treasureRoom->addExit("east",tower);
     armory->addExit("east", hallway);
     armory->addExit("north", library);
     library->addExit("south", armory);
@@ -40,13 +42,16 @@ void setupGame(vector<Room*>& rooms) {
     crypt->addExit("west", garden);
     crypt->addExit("north", finalRoom);
     kitchen->addExit("west", diningHall);
+    kitchen->addExit("south",treasureRoom);
     diningHall->addExit("east", kitchen);
-    tower->addExit("down", basement);
-    basement->addExit("up", tower);
-    basement->addExit("north", prison);
-    prison->addExit("south", basement);
-    study->addExit("east", secretRoom);
-    secretRoom->addExit("west", study);
+    tower->addExit("east", basement);
+    tower->addExit("north",study);
+    basement->addExit("west", tower);
+    basement->addExit("south", prison);
+    prison->addExit("north", basement);
+    study->addExit("north", secretRoom);
+    study->addExit("south", tower);
+    secretRoom->addExit("south", study);
 
     finalRoom->addExit("south", crypt);
 
